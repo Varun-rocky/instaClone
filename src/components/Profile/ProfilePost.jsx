@@ -16,7 +16,7 @@ const ProfilePost = ({img}) => {
       border={"1px solid"}
       borderColor={"whiteAlpha.300"}
       position={"relative"}
-      aspectRatio={1 / 1}
+      aspectRatio={1/1}
       onClick={onOpen}
     >
        <Flex
@@ -70,7 +70,7 @@ const ProfilePost = ({img}) => {
                 <Flex alignItems={"center"} justifyContent={"space-between"}>
                   
              
-                <Flex alignItems={"center"} justifyContent={"space-between"}>
+                <Flex alignItems={"center"} gap={4}>
                 <Avatar src="/profilepic.png" size={"sm"} name="vrock"/>
                 <Text fontWeight={"bold"} fontSize={12}>
                   vrock
@@ -85,7 +85,7 @@ const ProfilePost = ({img}) => {
                 </Box>
                 </Flex>
                 <Divider my={4} bg={"gray.500"} />
-                <VStack w={'full'} alignItems={"start"} maxW={"350px"} overflow={"auto"} >
+                <VStack w={'full'} alignItems={"start"} maxH={"350px"} overflowY={"auto"} >
                   <Comment createdAt ='1d ago' username='vr'
                   profilePic='/profilepic.png' text={"dummy image"}/>
                   <Comment createdAt ='1h ago' username='dq'

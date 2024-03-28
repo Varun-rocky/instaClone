@@ -15,6 +15,8 @@ Suggested for You
 See All
   </Text>
 </Flex>
+
+
 <SuggestedUser name="sudeep" followers={100} avatar='https://bigstarbio.com/wp-content/uploads/2020/04/sudeep.jpg'/>
 <SuggestedUser name="vikram" followers={104} avatar='https://th.bing.com/th/id/R.e66562445513e1f0cb8f7befe9bcf995?rik=1UDFDHPrdWDYLQ&riu=http%3a%2f%2fchennai365.com%2fassets%2fActor-Vikram-Photos-14.jpg&ehk=oANV4IKzbjapq8WVmITyY8bT51jvwYXHZzLfR9YfbrM%3d&risl=&pid=ImgRaw&r=0'/>
 <SuggestedUser name='prabhas' followers={321} avatar='https://i2.wp.com/godofindia.com/wp-content/uploads/2017/05/prabhas-12.jpg'/>

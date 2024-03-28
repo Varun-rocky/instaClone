@@ -28,7 +28,7 @@ function PostFooter({ username, isProfilePage }) {
   };
   return (
     <Box mb={10} marginTop={"auto"}>
-      <Flex alignItems={"center"} gap={4} w={"full"} pt={0} mb={2} mt={4}>
+      <Flex alignItems={"center"} gap={4} w={"full"} pt={0} mb={2} mt={2}>
         <Box onClick={handleLike} cursor={"pointer"} fontSize={18}>
           {!liked ? <NotificationsLogo /> : <UnlikeLogo />}
         </Box>
@@ -48,7 +48,7 @@ function PostFooter({ username, isProfilePage }) {
             </Text>
           </Text>
           <Text fontSize="sm" color={"gray"}>
-            View all 1000 comments
+            View all 1,000 comments
           </Text>
         </>
       )}

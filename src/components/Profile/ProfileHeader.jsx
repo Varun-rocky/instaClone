@@ -22,6 +22,8 @@ const ProfileHeader = () => {
       >
         <Avatar name="Vrock" src="/profilepic.png" alt="VarunRocky" />
       </AvatarGroup>
+
+      
       <VStack alignItems={"start"} gap={2} mx={"auto"} flex={1}>
         <Flex
           gap={4}
