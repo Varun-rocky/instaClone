@@ -12,10 +12,10 @@ import useSignUpWithEmailAndPassword from "../../hooks/useSignUpWithEmailAndPass
 
 const SignUp = () => {
   const [inputs, setInputs] = useState({
-    email: "",
-    password: "",
     fullName: "",
     userName: "",
+    email: "",
+    password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
  const {loading,error,signup}= useSignUpWithEmailAndPassword()
@@ -68,7 +68,7 @@ const SignUp = () => {
         error &&(
           <Alert status='error' fontSize={13} p={2} borderRadius={4}>
 					<AlertIcon fontSize={12} />
-					{error.message}
+					{error}
 				</Alert>
         )
       }

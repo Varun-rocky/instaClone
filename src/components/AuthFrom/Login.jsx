@@ -1,4 +1,4 @@
-import { Input , Alert, AlertIcon, Button,} from "@chakra-ui/react"
+import { Input , Button,} from "@chakra-ui/react"
 import { useState } from "react";
 const Login = () => {
   const [inputs, setInputs] = useState({
