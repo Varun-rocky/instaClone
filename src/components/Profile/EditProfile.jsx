@@ -32,16 +32,14 @@ const EditProfile = ({ isOpen, onClose }) => {
   const fileRef = useRef(null);
   const { selectedFile, handleImageChange, setSelectedFile } = usePreviewImg();
   const { editProfile, isUpdating } = useEditProfile();
-  const handleEditProfile = async() => {
-try {
-    await editProfile(inputs,selectedFile);
-    setSelectedFile(null);
-  onClose();
-
-} catch (error) {
-    showToast("Error", error.message, "error");
-}
-
+  const handleEditProfile = async () => {
+    try {
+      await editProfile(inputs, selectedFile);
+      setSelectedFile(null);
+      onClose();
+    } catch (error) {
+      showToast("Error", error.message, "error");
+    }
   };
 
   return (
@@ -97,15 +95,14 @@ try {
                 <FormControl>
                   <FormLabel fontSize={"sm"}>Full Name</FormLabel>
                   <Input
-										placeholder={"Full Name"}
-										size={"sm"}
-										type={"text"}
-										value={inputs.fullName || authUser.fullName}   
-                                        onChange={(e) =>
-                                            setInputs({ ...inputs, username: e.target.value })
-                                          }
-										
-									/>
+                    placeholder={"Full Name"}
+                    size={"sm"}
+                    type={"text"}
+                    value={inputs.fullName || authUser.fullName}
+                    onChange={(e) =>
+                      setInputs({ ...inputs, username: e.target.value })
+                    }
+                  />
                 </FormControl>
 
                 <FormControl>
