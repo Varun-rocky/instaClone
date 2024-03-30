@@ -33,7 +33,8 @@ function Sidebar() {
 		{
 			icon: <Avatar size={"sm"} name='Vrock' src='https://www.bing.com/images/search?view=detailV2&ccid=leEhbyiT&id=A402D353CED534EDF8E6EF47A1EDBA9748555D54&thid=OIP.leEhbyiT8wYhMCYp9WROfwHaHc&mediaurl=https%3a%2f%2fwww.filmibeat.com%2fph-big%2f2020%2f12%2fyash_160739586911.jpg&exph=854&expw=850&q=yash+image&simid=608055722101336619&FORM=IRPRST&ck=56F71FF32820FF87330900AF429E26FD&selectedIndex=33&itb=0'/>,
 			text:"Profile",
-			link:'/https://github.com/Varun-rocky'
+			link:"  https://github.com/Varun-rocky "
+
 		},
 	
 			
