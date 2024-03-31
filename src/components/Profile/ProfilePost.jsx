@@ -27,6 +27,7 @@ import { deleteObject, ref } from "firebase/storage";
 import { firestore, storage } from "../../firebase/firebase";
 import { arrayRemove, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import usePostStore from "../../store/postStore";
+import Caption from "../Comment/Caption";
 const ProfilePost = ({ post }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const userProfile = useUserProfileStore((state) => state.userProfile);
@@ -34,7 +35,7 @@ const ProfilePost = ({ post }) => {
   const authUser = useAuthStore((state) => state.user);
   const [isDeleting, setIsDeleting] = useState(false);
   const deletePost = usePostStore(state=>state.deletePost)
-  const deletePostFromProfile = useUserProfileStore(state=>state.deletePost)
+  const decrementPostsCount = useUserProfileStore(state=>state.deletePost)
   const handleDeletePost = async () => {
     if (!window.confirm("Are you sure you want to delete this post?")) return;
     if (isDeleting) return;
@@ -49,7 +50,7 @@ const ProfilePost = ({ post }) => {
 				posts: arrayRemove(post.id),
 			});
       deletePost(post.id)
-      deletePostFromProfile(post.id)
+      decrementPostsCount(post.id)
       showToast("Success", "Post deleted successfully", "success");
 
     } catch (error) {
@@ -172,27 +173,14 @@ const ProfilePost = ({ post }) => {
                   maxH={"350px"}
                   overflowY={"auto"}
                 >
-                  <Comment
-                    createdAt="1d ago"
-                    username="vr"
-                    profilePic="/profilepic.png"
-                    text={"dummy image"}
-                  />
-                  <Comment
-                    createdAt="1h ago"
-                    username="dq"
-                    profilePic="https://imgs.search.brave.com/KApZqgrs_16mlGcOmBL0ntLm8wPci4qwG0cJIFkrs_E/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL00v/TVY1Qk5XUmtNRGRq/TlRZdFlUazVaUzAw/WlRobExUbGhNRGN0/WkdRMVlUSTFOakUw/TUdVd1hrRXlYa0Zx/Y0dkZVFYVnlNamt4/TnpRMU5ESUAuanBn"
-                    text={"dq"}
-                  />
-                  <Comment
-                    createdAt="24h ago"
-                    username="rrr"
-                    profilePic="https://imgs.search.brave.com/NfTX5aPm6m71bQkas3RVnm4HuWqGkC7efuhrDacNSuk/rs:fit:500:0:0/g:ce/aHR0cHM6Ly93d3cu/Z3JlYXRhbmRocmEu/Y29tL25ld3Bob3Rv/czEwL3JhamFfcnJy/MTE3MDM3OTI0OTUu/anBn"
-                    text={"rrr"}
-                  />
+                  {/* caption */}
+                  {post.caption && <Caption post={post}/>}
+	{post.comments.map((comment) => (
+										<Comment key={comment.id} comment={comment} />
+									))}
                 </VStack>
                 <Divider my={4} bg={"gray.800"} />
-                <PostFooter isProfilePage={true} />
+                <PostFooter isProfilePage={true} post ={post} />
               </Flex>
             </Flex>
           </ModalBody>
