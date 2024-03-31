@@ -8,6 +8,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import React, { useRef, useState } from "react";
+import timeAgo from "../../utils/timeAgo";
 import {
   CommentLogo,
   NotificationsLogo,
@@ -15,10 +16,10 @@ import {
 } from "../../assets/constants";
 import usePostComment from "../../hooks/usePostComment";
 import useAuthStore from "../../store/authStore";
+import useLikePost from "../../hooks/useLikePost";
 
-function PostFooter({ post, isProfilePage }) {
-  const [liked, setLiked] = useState(false);
-  const [likes, setLikes] = useState(1000);
+function PostFooter({ post, isProfilePage ,creatorProfile}) {
+  
   const [comment, setComment] = useState("");
   const { isCommenting, handlePostComment } = usePostComment();
   const authUser = useAuthStore((state) => state.user);
@@ -27,20 +28,12 @@ function PostFooter({ post, isProfilePage }) {
     setComment("");
   };
   const commentRef = useRef(null);
-  const handleLike = () => {
-    if (liked) {
-      setLiked(false);
-      setLikes(likes - 1);
-    } else {
-      setLiked(true);
-      setLikes(likes + 1);
-    }
-  };
+const { isLiked, likes, handleLikePost } = useLikePost(post);
   return (
     <Box mb={10} marginTop={"auto"}>
       <Flex alignItems={"center"} gap={4} w={"full"} pt={0} mb={2} mt={2}>
-        <Box onClick={handleLike} cursor={"pointer"} fontSize={18}>
-          {!liked ? <NotificationsLogo /> : <UnlikeLogo />}
+        <Box onClick={handleLikePost} cursor={"pointer"} fontSize={18}>
+          {!isLiked ? <NotificationsLogo /> : <UnlikeLogo />}
         </Box>
         <Box
           cursor={"pointer"}
@@ -53,17 +46,24 @@ function PostFooter({ post, isProfilePage }) {
       <Text fontWeight={600} fontSize={"sm"}>
         {likes} likes
       </Text>
+      {isProfilePage && (
+				<Text fontSize='12' color={"gray"}>
+					Posted {timeAgo(post.createdAt)}
+				</Text>
+			)}
       {!isProfilePage && (
         <>
           <Text fontSize="sm" fontWeight={700}>
-            {/* {username}{" "} */}
+           {creatorProfile?.username} {" "}
             <Text as="span" fontWeight={400}>
-              feeling good
+              {post.caption}
             </Text>
           </Text>
-          <Text fontSize="sm" color={"gray"}>
-            View all 1,000 comments
-          </Text>
+          {post.comments.length > 0 && (
+						<Text fontSize='sm' color={"gray"} cursor={"pointer"} >
+							View all {post.comments.length} comments
+						</Text>
+					)}
         </>
       )}
       {authUser && (
